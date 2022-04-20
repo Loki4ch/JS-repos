@@ -54,7 +54,7 @@ const getSum = function(a, b) {
 		lim = b;
 	};
 	for (;i <= lim; i++){
-		sum += + i;
+		sum += i;
 	}
 return sum;
 }
@@ -107,7 +107,7 @@ const choco = function(n, m) {
 const taxPercent = 10;
 const telPrice = 100;
 const acsPrice = 50;
-const balance = 300;
+let balance = 300;
 let currency = '$';
 let canAfford = true;
 
@@ -125,21 +125,22 @@ const totalPriceConvertCurrency = function(price, currency) {
 	return price + currency;
 }
 
-
-
-if (balance < totalPrice)
+let totalPrice = totalPriceTaxCalc(totalPriceCalcRaw(telPrice, acsPrice),taxPercent);
+if (balance < totalPrice) {
+	alert("You dont have enough money");
+} else {
 while (canAfford) {
-
-
-
-	if (balance >= totalPrice) {
-		balance = balance - totalPrice; 
+if (balance < totalPrice) {
+	alert("You dont have enough money");
+	break;
 	} else {
-		alert("You dont have enough money");
-		canAfford = false;
+		balance -= totalPrice;
+		console.log('You bought phone and accessory', ` | price ${totalPriceConvertCurrency(totalPrice, currency)}`)
+		totalPrice += totalPrice;
 	}
+	} 
 }
+totalPriceOutput =  totalPriceConvertCurrency(totalPriceConvertDigits(totalPrice), currency);
 
-
-console.log(totalPriceConvertCurrency(totalPriceConvertDigits(taxCalc(totalPrice,tax)), currency));
+console.log(totalPriceOutput);
 
